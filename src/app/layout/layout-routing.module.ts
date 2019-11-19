@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LayoutComponent } from './layout.component';
-import { Screen1Component } from './screen1/screen1.component';
-import { Screen2Component } from './screen2/screen2.component';
+import { CadastrarComponent } from './cadastrar/cadastrar.component';
+import { ListarComponent } from './listar/listar.component';
+import { EditarComponent } from './editar/editar.component';
 
 const routes: Routes = [
     {
@@ -19,12 +20,16 @@ const routes: Routes = [
                 loadChildren: './dashboard/dashboard.module#DashboardModule'
             },
             {
-                path: 'screen1',
-                loadChildren: './screen1/screen1.module#Screen1Module'
+                path: 'cadastrar',
+                component: CadastrarComponent
             },
             {
-                path: 'screen2',
-                component: Screen2Component
+                path: 'listar',
+                component: ListarComponent
+            },
+            {
+                path: 'editar/:id',
+                component: EditarComponent
             }
         ]
     }

@@ -1,3 +1,4 @@
+import { EditarComponent } from './editar/editar.component';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import {
@@ -16,6 +17,12 @@ import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { NavComponent } from './nav/nav.component';
 import { Screen2Component } from './screen2/screen2.component';
+import { CadastrarComponent } from './cadastrar/cadastrar.component';
+import { ListarComponent } from './listar/listar.component';
+import { MatCardModule, MatTableModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     imports: [
@@ -28,9 +35,14 @@ import { Screen2Component } from './screen2/screen2.component';
         MatInputModule,
         MatMenuModule,
         MatListModule,
-        TranslateModule
+        TranslateModule,
+        MatTableModule,
+        HttpClientModule,
+        MatPaginatorModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
-    declarations: [Screen2Component, LayoutComponent, NavComponent, TopnavComponent, SidebarComponent, ]
+    declarations: [Screen2Component, LayoutComponent, NavComponent, TopnavComponent, SidebarComponent, CadastrarComponent, ListarComponent, EditarComponent,]
 
 })
 export class LayoutModule { }

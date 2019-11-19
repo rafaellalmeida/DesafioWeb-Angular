@@ -1,18 +1,61 @@
+import { HttpServiceService } from './../services/http-service.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-@Component({
+
+@Component({ 
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-    constructor(private router: Router) {}
+    loginForm: FormGroup;
+    submitted = false;
+    returnUrl: string;
 
-    ngOnInit() {}
+    constructor(
+        private formBuilder: FormBuilder,
+        private route: ActivatedRoute,
+        private httpService: HttpServiceService,
+        private router: Router
+    ){
 
-    onLogin() {
-        localStorage.setItem('isLoggedin', 'true');
-        this.router.navigate(['/dashboard']);
     }
+
+    ngOnInit() {
+        this.initForm();
+    }
+    
+    initForm(){
+        this.loginForm = this.formBuilder.group({
+            email: ['', Validators.required],
+            password: ['', Validators.required],
+        });
+
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    }
+
+    get f() { return this.loginForm.controls; }
+
+    onSubmit() {
+        this.submitted = true;
+
+        if (this.loginForm.invalid) {
+            return;
+        }
+
+        this.httpService.post({
+            'email': this.f.email.value
+          },'https://reqres.in/api/users');
+          console.log({
+            'email': this.f.email.value,
+          })
+          alert('Bem vindo ' + this.f.email.value);
+            
+          localStorage.setItem('isLoggedin', 'true');
+          this.router.navigate(['/dashboard']);   
+       
+    }
+    
 }

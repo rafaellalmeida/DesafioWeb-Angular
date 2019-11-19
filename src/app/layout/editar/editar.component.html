@@ -1,0 +1,33 @@
+<div class="register">
+  <div class="content">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="text-center">
+          <h2>Editar dados</h2>
+      </div>
+      <div fxFlex  fxlayout="row" fxlayout.lt-md="column">
+          <div fxFlexFill>
+              <mat-form-field class="w-100">
+                  <input formControlName="name" class="name" matInput placeholder="Usuário" ng-pattern="[A-Za-z0-9]{1,20}">
+              </mat-form-field>
+          </div>
+      </div>
+
+      <div fxFlex  fxLayout="row" fxLayout.lt-md="column">
+          <div fxFlexFill>
+              <mat-form-field class="w-100">
+                  <input formControlName="work" class="name"  matInput placeholder="Emprego" ng-pattern="[A-Za-z0-9]{1,20}">
+              </mat-form-field>
+              <div *ngIf="submitted && f.work.errors" class="invalid-feedback">
+                <div *ngIf="f.work.errors.required">Campo "Emprego" obrigatório</div>
+              </div>
+          </div>
+      </div>
+      <div fxLayout="row" fxLayout.lt-md="column">
+        <div fxFlexFill>
+            <button mat-raised-button color="primary" class="w-100" type="submit">Editar</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
